@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Выход из системы
+{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <p>Вы уверены, что хотите выйти?</p>
+            <button type="submit" class="btn btn-primary btn-sm">Да, выйти</button>
+        </form>
+    {% else %}
+        <div>
+            Вы не вошли в систему. Хотите <a href="/login/">войти</a>?
+        </div>
+    {% endif %}
+
+{% endblock %}

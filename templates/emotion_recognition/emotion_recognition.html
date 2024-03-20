@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Распознавание эмоций
+{% endblock %}
+
+{% block content %}
+    <h2> Распознавание эмоций</h2>
+    <a type="button" class="btn btn-primary btn-sm mb-3" href="{% url 'index' %}">Вернуться на главную</a><br>
+    <img src="{% url 'video_feed' %}" />
+
+{% endblock %}

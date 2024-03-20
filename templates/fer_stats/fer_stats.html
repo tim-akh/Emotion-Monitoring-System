@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Статистика
+{% endblock %}
+
+{% block content %}
+    <h2>Статистика для пользователя {{ request.user }}</h2>
+    <form>
+        <div class="my-3 mt-5">
+            {{ form.start.errors }}
+            {{ form.start }}
+        </div>
+        <div class="my-3">
+            {{ form.end.errors }}
+            {{ form.end }}
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm mb-5">Применить</button>
+    </form>
+    <h4>Испытана злость: {{ count_angry }}</h4>
+    {{ chart_angry | safe }}
+    <h4>Испытано отвращение: {{ count_disgust }}</h4>
+    {{ chart_disgust | safe }}
+    <h4>Испытан страх: {{ count_fear }}</h4>
+    {{ chart_fear | safe }}
+    <h4>Испытана радость: {{ count_happy }}</h4>
+    {{ chart_happy | safe }}
+    <h4>Испытана грусть: {{ count_sad }}</h4>
+    {{ chart_sad | safe }}
+    <h4>Испытано удивление: {{ count_surprise }}</h4>
+    {{ chart_surprise | safe }}
+
+{% endblock %}

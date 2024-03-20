@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Стартовая страница
+{% endblock %}
+
+{% block content %}
+    <h1>Стартовая страница</h1>
+    <div>
+        Добро пожаловать, {{ request.user }}!<br>
+        Вы можете перейти в <a href="{% url 'emotion_recognition' %}">раздел распознавания эмоций</a> или
+        в <a href="{% url 'fer_stats' %}">раздел со статистикой</a>.
+    </div>
+
+{% endblock %}

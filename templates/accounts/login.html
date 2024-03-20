@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Вход в систему
+{% endblock %}
+
+{% block content %}
+    {% if not request.user.is_authenticated %}
+        <form method="post" action="">
+            {% csrf_token %}
+            {% if error %}
+                <p>{{ error }}</p>
+            {% endif %}
+            <div class="my-2">
+                <input type="text" name="username" placeholder="Логин" />
+            </div>
+            <div class="my-2">
+                <input type="password" name="password" placeholder="Пароль" />
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">Войти</button>
+        </form>
+        <p class="my-2">Нет аккаунта? <a href="/register/">Зарегистрируйтесь</a></p>
+    {% else %}
+        <div>
+            Вы уже вошли в систему. Если хотите войти в другой аккаунт, <a href="/logout/">выйдите</a> из этого.
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title> {% block title %}{% endblock %} </title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        <a class="nav-link" href="{% url 'index' %}">Главная</a>
+                        <a class="nav-link" href="{% url 'emotion_recognition' %}">Распознавание эмоций</a>
+                        <a class="nav-link" href="{% url 'fer_stats' %}">Статистика</a>
+                    {% else %}
+                        <a class="nav-link disabled" href="{% url 'index' %}" aria-disabled="true">Главная</a>
+                        <a class="nav-link disabled" href="{% url 'emotion_recognition' %}" aria-disabled="true">Распознавание эмоций</a>
+                        <a class="nav-link disabled" href="{% url 'fer_stats' %}" aria-disabled="true">Статистика</a>
+                    {% endif %}
+                </div>
+            </div>
+            <ul class="navbar-nav ml-auto">
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'fer_stats' %}">{{ request.user }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Выйти</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Войти</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+	<div class="m-5">
+        {% block content %}{% endblock %}
+	</div>
+</body>
+</html>
